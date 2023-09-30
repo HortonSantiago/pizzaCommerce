@@ -8,6 +8,7 @@ export default function Home() {
   return (
     <Box
       sx={{
+        marginTop: 10,
         display: "flex",
         justifyContent: { xs: "center" },
         alignItems: { xs: "center" },
