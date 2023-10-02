@@ -11,8 +11,7 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
-import LocalPizzaIcon from "@mui/icons-material/LocalPizza";
+import CartWidget from "../../common/cartWidget/ProductCard/CartWidget";
 
 const pages = ["Productos", "Carrito", "Sobre nosotros"];
 const settings = ["Cuenta", "Historial de compras", "Logout"];
@@ -40,22 +39,12 @@ function ResponsiveAppBar() {
     <AppBar position="fixed" elevation="24" sx={{ bgcolor: "grey" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <LocalPizzaIcon sx={{ display: { xs: "none", md: "flex" }, mr: 2 }} />
-          <Typography
-            component="a"
-            sx={{
-              display: { xs: "none", md: "flex" },
-              fontFamily: "Roboto",
-              fontWeight: 500,
-            }}
-          >
-            PizzaString
-          </Typography>
+          <CartWidget sx={{ display: { xs: "none", md: "flex" }, mr: 2 }} />
 
           <Box
             sx={{
               flexGrow: { xs: 10, md: 1 },
-              display: { xs: "none", md: "flex" },
+              display: { xs: "flex", md: "none" },
             }}
           >
             <IconButton
@@ -93,24 +82,26 @@ function ResponsiveAppBar() {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+
           <Typography
             variant="h2"
             noWrap
             component="a"
             href="#app-bar-with-responsive-menu"
             sx={{
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
+              display: { xs: "flex", md: "block" },
+              flexGrow: { xs: 10, md: 50 },
+              ml: { xs: 2, md: 20 },
               fontFamily: "Roboto",
               fontWeight: 400,
               fontSize: 20,
               letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
+              textAlign: "center",
             }}
           >
-            Pizzastring
+            Pizza string
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
@@ -127,7 +118,10 @@ function ResponsiveAppBar() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar
+                  alt="Remy Sharp"
+                  src="https://res.cloudinary.com/dohsaecvv/image/upload/v1696266028/sxfcenahcd2xjixe1wqk.jpg"
+                />
               </IconButton>
             </Tooltip>
             <Menu
