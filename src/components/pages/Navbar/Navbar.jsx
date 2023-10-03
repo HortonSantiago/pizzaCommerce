@@ -11,7 +11,7 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import CartWidget from "../../common/cartWidget/ProductCard/CartWidget";
+import CartWidget from "../../common/cartWidget/CartWidget";
 
 const pages = ["Productos", "Carrito", "Sobre nosotros"];
 const settings = ["Cuenta", "Historial de compras", "Logout"];
