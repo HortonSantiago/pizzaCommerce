@@ -12,6 +12,7 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import CartWidget from "../../common/cartWidget/CartWidget";
+import { Link, Outlet } from "react-router-dom";
 
 const pages = ["Productos", "Carrito", "Sobre nosotros"];
 const settings = ["Cuenta", "Historial de compras", "Logout"];
@@ -39,8 +40,9 @@ function ResponsiveAppBar() {
     <AppBar position="fixed" elevation="24" sx={{ bgcolor: "grey" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <CartWidget sx={{ display: { xs: "none", md: "flex" }, mr: 2 }} />
-
+          <Link to="/cart">
+            <CartWidget sx={{ display: { xs: "none", md: "flex" }, mr: 2 }} />
+          </Link>
           <Box
             sx={{
               flexGrow: { xs: 10, md: 1 },
@@ -83,26 +85,28 @@ function ResponsiveAppBar() {
             </Menu>
           </Box>
 
-          <Typography
-            variant="h2"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              display: { xs: "flex", md: "block" },
-              flexGrow: { xs: 10, md: 50 },
-              ml: { xs: 2, md: 20 },
-              fontFamily: "Roboto",
-              fontWeight: 400,
-              fontSize: 20,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-              textAlign: "center",
-            }}
-          >
-            Pizza string
-          </Typography>
+          <Link to="/">
+            <Typography
+              variant="h2"
+              noWrap
+              component="a"
+              href="#app-bar-with-responsive-menu"
+              sx={{
+                display: { xs: "flex", md: "block" },
+                flexGrow: { xs: 10, md: 50 },
+                ml: { xs: 2, md: 20 },
+                fontFamily: "Roboto",
+                fontWeight: 400,
+                fontSize: 20,
+                letterSpacing: ".3rem",
+                color: "inherit",
+                textDecoration: "none",
+                textAlign: "center",
+              }}
+            >
+              Pizza string
+            </Typography>
+          </Link>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Button
@@ -149,6 +153,7 @@ function ResponsiveAppBar() {
           </Box>
         </Toolbar>
       </Container>
+      <Outlet />
     </AppBar>
   );
 }

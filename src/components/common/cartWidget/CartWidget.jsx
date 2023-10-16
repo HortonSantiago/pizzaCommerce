@@ -1,14 +1,11 @@
 import { BsFillCartPlusFill } from "react-icons/bs";
-import { useState } from "react";
+
+import { Link } from "react-router-dom";
 
 const CartWidget = () => {
-  const [cartCount, setCartCount] = useState(0);
   return (
-    <div style={{ display: "flex", alignItems: "center" }}>
-      <BsFillCartPlusFill
-        onClick={() => setCartCount(cartCount + 1)}
-        style={{ cursor: "pointer" }}
-      />
+    <Link to="/cart" style={{ display: "flex", alignItems: "center" }}>
+      <BsFillCartPlusFill style={{ cursor: "pointer" }} />
       <div
         style={{
           width: "20px",
@@ -21,10 +18,8 @@ const CartWidget = () => {
           alignItems: "center",
           marginLeft: "5%",
         }}
-      >
-        <span>{cartCount}</span>
-      </div>
-    </div>
+      ></div>
+    </Link>
   );
 };
 

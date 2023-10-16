@@ -4,6 +4,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import { Link } from "react-router-dom";
 
 export default function ProductCard({
   id,
@@ -76,16 +77,18 @@ export default function ProductCard({
         >
           Añadir al carrito
         </Button>
-        <Button
-          size="small"
-          sx={{
-            backgroundColor: "beige",
-            color: "brown",
-            "&:hover": { backgroundColor: "black" },
-          }}
-        >
-          Contador
-        </Button>
+        <Link to={`/itemDetail/${id}`}>
+          <Button
+            size="small"
+            sx={{
+              backgroundColor: "beige",
+              color: "brown",
+              "&:hover": { backgroundColor: "black" },
+            }}
+          >
+            Detalle
+          </Button>
+        </Link>
       </CardActions>
     </Card>
   );

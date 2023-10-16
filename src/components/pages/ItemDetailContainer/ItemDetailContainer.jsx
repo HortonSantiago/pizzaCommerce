@@ -15,6 +15,7 @@ const ItemDetailContainer = () => {
   // Renderiza los detalles del producto
   return (
     <div>
+      <h1>DETAAAIL</h1>
       <h2>{product.title}</h2>
       <p>{product.description}</p>
       <p>Precio: ${product.price}</p>
