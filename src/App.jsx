@@ -1,7 +1,8 @@
 import Cart from "./components/pages/Cart/Cart";
 import ItemDetailContainer from "./components/pages/ItemDetailContainer/ItemDetailContainer";
+import ItemListContainer from "./components/pages/ItemListContainer/ItemListContainer";
 import Navbar from "./components/pages/Navbar/Navbar";
-import ItemListContainer from "./components/pages/itemListContainer/ItemListContainer";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -19,4 +20,3 @@ function App() {
   );
 }
 export default App;
-<Route path="/" element={<ItemListContainer />} />;
