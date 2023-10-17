@@ -1,7 +1,7 @@
 export const products = [
   {
     id: 1,
-    category: "pizza",
+    category: "pizzas",
     title: "Pizza Margherita",
     description: "Clásica napolitana con albahaca",
     price: 40.2,
@@ -9,7 +9,7 @@ export const products = [
   },
   {
     id: 2,
-    category: "pizza",
+    category: "pizzas",
     title: "Pizza Pepperoni",
     description: "Deliciosa pizza con pepperoni y queso derretido",
     price: 45.5,
@@ -17,7 +17,7 @@ export const products = [
   },
   {
     id: 3,
-    category: "pizza",
+    category: "pizzas",
     title: "Pizza Vegetariana",
     description: "Pizza repleta de verduras frescas y queso",
     price: 42.0,
@@ -25,7 +25,7 @@ export const products = [
   },
   {
     id: 4,
-    category: "pizza",
+    category: "pizzas",
     title: "Pizza BBQ",
     description: "Pizza con salsa barbacoa, pollo y cebolla roja",
     price: 48.8,
@@ -33,7 +33,7 @@ export const products = [
   },
   {
     id: 5,
-    category: "pizza",
+    category: "pizzas",
     title: "Pizza Hawaiana",
     description: "Pizza con jamón, piña y queso derretido",
     price: 46.3,
@@ -41,7 +41,7 @@ export const products = [
   },
   {
     id: 6,
-    category: "pizza",
+    category: "pizzas",
     title: "Pizza Cuatro Quesos",
     description: "Pizza con cuatro tipos diferentes de queso",
     price: 44.7,
@@ -49,7 +49,7 @@ export const products = [
   },
   {
     id: 7,
-    category: "pan",
+    category: "panes",
     title: "Pan Casero",
     description: "Pan recién horneado en casa",
     price: 5.0,
@@ -57,7 +57,7 @@ export const products = [
   },
   {
     id: 8,
-    category: "pan",
+    category: "panes",
     title: "Pan Brioche",
     description: "Pan dulce y suave estilo brioche",
     price: 6.5,
@@ -65,7 +65,7 @@ export const products = [
   },
   {
     id: 9,
-    category: "pan",
+    category: "panes",
     title: "Baguette",
     description: "Pan francés estilo baguette",
     price: 3.5,
@@ -73,7 +73,7 @@ export const products = [
   },
   {
     id: 10,
-    category: "pan",
+    category: "panes",
     title: "Pan Flauta",
     description: "Pan crujiente estilo flauta",
     price: 4.0,

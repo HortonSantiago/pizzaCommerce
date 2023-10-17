@@ -1,3 +1,4 @@
 .item-list-container {
   margin-top: 120px;
+  overflow: auto; /* o 'scroll' para habilitar el scroll vertical */
 }

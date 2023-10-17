@@ -12,10 +12,10 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import CartWidget from "../../common/cartWidget/CartWidget";
-import { Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const pages = ["Productos", "Carrito", "Sobre nosotros"];
-const settings = ["Cuenta", "Historial de compras", "Logout"];
+const pages = ["pizzas", "panes"];
+const settings = ["Cuenta", "Historial de compras", "Sobre nosotros"];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -78,9 +78,15 @@ function ResponsiveAppBar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="end">{page}</Typography>
-                </MenuItem>
+                <Link
+                  key={page}
+                  to={`/category/${page}`}
+                  style={{ textDecoration: "none" }}
+                >
+                  <MenuItem onClick={handleCloseNavMenu}>
+                    <Typography textAlign="end">{page}</Typography>
+                  </MenuItem>
+                </Link>
               ))}
             </Menu>
           </Box>
@@ -109,13 +115,19 @@ function ResponsiveAppBar() {
           </Link>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
-              <Button
+              <Link
                 key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
+                to={`/category/${page}`}
+                style={{ textDecoration: "none" }}
               >
-                {page}
-              </Button>
+                <Button
+                  key={page}
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: "white", display: "block" }}
+                >
+                  {page}
+                </Button>
+              </Link>
             ))}
           </Box>
 
@@ -153,7 +165,6 @@ function ResponsiveAppBar() {
           </Box>
         </Toolbar>
       </Container>
-      <Outlet />
     </AppBar>
   );
 }
