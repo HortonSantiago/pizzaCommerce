@@ -6,6 +6,7 @@ export const products = [
     description: "Clásica napolitana con albahaca",
     price: 40.2,
     img: "https://res.cloudinary.com/dohsaecvv/image/upload/v1697328636/margherita_uyo3yd.jpg",
+    stock: 5,
   },
   {
     id: 2,
@@ -14,6 +15,7 @@ export const products = [
     description: "Deliciosa pizza con pepperoni y queso derretido",
     price: 45.5,
     img: "https://res.cloudinary.com/dohsaecvv/image/upload/v1697328824/cebolla_bavoxd.webp",
+    stock: 3,
   },
   {
     id: 3,
@@ -22,6 +24,7 @@ export const products = [
     description: "Pizza repleta de verduras frescas y queso",
     price: 42.0,
     img: "https://res.cloudinary.com/dohsaecvv/image/upload/v1697328824/calabresa_xs6t2b.webp",
+    stock: 6,
   },
   {
     id: 4,
@@ -30,6 +33,7 @@ export const products = [
     description: "Pizza con salsa barbacoa, pollo y cebolla roja",
     price: 48.8,
     img: "https://res.cloudinary.com/dohsaecvv/image/upload/v1697328824/calabresa_xs6t2b.webp",
+    stock: 7,
   },
   {
     id: 5,
@@ -38,6 +42,7 @@ export const products = [
     description: "Pizza con jamón, piña y queso derretido",
     price: 46.3,
     img: "https://res.cloudinary.com/dohsaecvv/image/upload/v1697328636/margherita_uyo3yd.jpg",
+    stock: 8,
   },
   {
     id: 6,
@@ -46,6 +51,7 @@ export const products = [
     description: "Pizza con cuatro tipos diferentes de queso",
     price: 44.7,
     img: "https://res.cloudinary.com/dohsaecvv/image/upload/v1697328636/margherita_uyo3yd.jpg",
+    stock: 2,
   },
   {
     id: 7,
@@ -54,6 +60,7 @@ export const products = [
     description: "Pan recién horneado en casa",
     price: 5.0,
     img: "https://res.cloudinary.com/dohsaecvv/image/upload/v1697329109/pan_h2msha.webp",
+    stock: 3,
   },
   {
     id: 8,
@@ -62,6 +69,7 @@ export const products = [
     description: "Pan dulce y suave estilo brioche",
     price: 6.5,
     img: "https://res.cloudinary.com/dohsaecvv/image/upload/v1697329111/pan-brioche-sledibrioche_gaakxd.jpg",
+    stock: 5,
   },
   {
     id: 9,
@@ -70,6 +78,7 @@ export const products = [
     description: "Pan francés estilo baguette",
     price: 3.5,
     img: "https://res.cloudinary.com/dohsaecvv/image/upload/v1697329108/baguette-4-FP_vdxc0u.jpg",
+    stock: 6,
   },
   {
     id: 10,
@@ -78,5 +87,6 @@ export const products = [
     description: "Pan crujiente estilo flauta",
     price: 4.0,
     img: "https://res.cloudinary.com/dohsaecvv/image/upload/v1697329108/baguette-4-FP_vdxc0u.jpg",
+    stock: 8,
   },
 ];
