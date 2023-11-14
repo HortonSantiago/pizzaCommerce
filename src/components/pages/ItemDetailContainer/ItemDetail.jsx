@@ -1,4 +1,4 @@
-const ItemDetail = ({ productSelected, onAdd }) => {
+const ItemDetail = ({ productSelected, onAdd, initial }) => {
   return (
     <div className="item-detail-container">
       <h1>Selected Product</h1>
@@ -7,6 +7,7 @@ const ItemDetail = ({ productSelected, onAdd }) => {
           <h2>{productSelected.title}</h2>
           <p>{productSelected.description}</p>
           <p>Price: ${productSelected.price}</p>
+          <h5> ya tines {initial} en el carrito</h5>
           <img src={productSelected.img} alt={productSelected.title} />
           <button onClick={() => onAdd(1)}>Add to Cart</button>
         </div>

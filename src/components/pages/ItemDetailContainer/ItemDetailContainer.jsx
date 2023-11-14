@@ -1,32 +1,55 @@
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { products } from "../../productMock";
 import ProductCard from "../../common/productCard/ProductCard";
 import Grid from "@mui/material/Grid";
+import { CartContext } from "../../context/cartContext";
 
 const ItemDetailContainer = () => {
+  const [productSelected, setProductSelected] = useState({});
   const { id } = useParams();
-  const product = products.find((item) => item.id === Number(id));
+  const { addToCart, getQuantityById } = useContext(CartContext);
 
-  if (!product) {
+  let totalQuantity = getQuantityById(+id);
+  console.log(totalQuantity);
+
+  useEffect(() => {
+    const product = products.find((item) => item.id === Number(id));
+    if (product) {
+      setProductSelected(product);
+    }
+  }, [id]);
+
+  const onAdd = (cantidad) => {
+    let obj = {
+      ...productSelected,
+      quantity: cantidad,
+    };
+    addToCart(obj);
+  };
+
+  if (!productSelected.id) {
     return <div>Producto no encontrado</div>;
   }
 
   return (
     <Grid
       container
-      justifyContent="center" // Centra horizontalmente
-      alignItems="center" // Centra verticalmente
-      style={{ height: "100vh" }} // Ocupa el 100% de la altura del viewport
+      justifyContent="center"
+      alignItems="center"
+      style={{ height: "100vh" }}
     >
       <Grid item>
         <ProductCard
-          id={product.id}
-          category={product.category}
-          title={product.title}
-          description={product.description}
-          price={product.price}
-          img={product.img}
+          id={productSelected.id}
+          category={productSelected.category}
+          title={productSelected.title}
+          description={productSelected.description}
+          price={productSelected.price}
+          img={productSelected.img}
+          stock={productSelected.stock}
         />
+        <button onClick={() => onAdd(1)}>Agregar al carrito</button>
       </Grid>
     </Grid>
   );
