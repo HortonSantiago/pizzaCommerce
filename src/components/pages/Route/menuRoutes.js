@@ -2,7 +2,8 @@ import ItemDetailContainer from "../ItemDetailContainer/ItemDetailContainer.jsx"
 import ItemListContainer from "../ItemListContainer/ItemListContainer.jsx";
 
 import Cart from "../Cart/Cart.jsx";
-import { Checkout } from "../checkOut/CheckOut.jsx";
+// import { Checkout } from "../checkOut/CheckOut.jsx";
+import { CheckOutFormik } from "../checkOutFormik/CheckOutFormik.jsx";
 
 export const routes = [
   {
@@ -28,6 +29,6 @@ export const routes = [
   {
     id: "checkout",
     path: "/checkout",
-    Element: Checkout,
+    Element: CheckOutFormik,
   },
 ];
