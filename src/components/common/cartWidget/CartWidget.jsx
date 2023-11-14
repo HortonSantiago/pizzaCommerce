@@ -4,15 +4,14 @@ import { Link } from "react-router-dom";
 import { CartContext } from "../../context/cartContext";
 
 const CartWidget = () => {
-  const { cart } = useContext(CartContext);
+  const { getTotalQuantity } = useContext(CartContext);
+
+  const total = getTotalQuantity();
 
   return (
     <Link to="/cart" style={{ display: "flex", alignItems: "center" }}>
-      <BsFillCartPlusFill
-        badgeContent={cart.length}
-        style={{ cursor: "pointer" }}
-      />
-      {cart.length > 0 && (
+      <BsFillCartPlusFill badgeContent={total} style={{ cursor: "pointer" }} />
+      {total > 0 && (
         <div
           style={{
             width: "20px",
@@ -26,7 +25,7 @@ const CartWidget = () => {
             marginLeft: "5%",
           }}
         >
-          {cart.length}
+          {total}
         </div>
       )}
     </Link>
