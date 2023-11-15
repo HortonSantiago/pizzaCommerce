@@ -1,8 +1,16 @@
 import { useState } from "react";
-import Counter from "./Counter";
+import CounterPresentacional from "./CounterPresentacional";
 
-export const CounterContainer = ({ stock, onAdd, initial }) => {
+const CounterContainer = ({ stock, onAdd, initial = 1 }) => {
   const [contador, setContador] = useState(initial);
+
+  const sumar = () => {
+    if (contador < stock) {
+      setContador(contador + 1);
+    } else {
+      alert("Cantidad máxima alcanzada");
+    }
+  };
 
   const restar = () => {
     if (contador > 1) {
@@ -10,21 +18,14 @@ export const CounterContainer = ({ stock, onAdd, initial }) => {
     }
   };
 
-  const sumar = () => {
-    if (contador < stock) {
-      setContador(contador + 1);
-    } else {
-      alert("cantidad máxima");
-    }
-  };
-
   return (
-    <Counter
+    <CounterPresentacional
       sumar={sumar}
       restar={restar}
       contador={contador}
       onAdd={onAdd}
-      initial={contador}
     />
   );
 };
+
+export default CounterContainer;
