@@ -19,7 +19,7 @@ const ItemDetailContainer = () => {
   }, [id]);
 
   const onAdd = (cantidad) => {
-    // calcula  la cantidad total del cart
+    // Calcula la cantidad total del cart
     const totalQuantityInCart = cart.reduce((total, item) => {
       if (item.id === productSelected.id) {
         return total + item.quantity;
@@ -27,7 +27,7 @@ const ItemDetailContainer = () => {
       return total;
     }, 0);
 
-    // calcular el stock antes de agregar
+    // Calcular el stock antes de agregar
     const remainingStock = productSelected.stock - totalQuantityInCart;
 
     // Verificar si la cantidad deseada supera el stock disponible (considerando el carrito)
@@ -36,7 +36,7 @@ const ItemDetailContainer = () => {
       return;
     }
 
-    // logica para agregar al cart
+    // Lógica para agregar al cart
     let obj = {
       ...productSelected,
       quantity: cantidad,
@@ -55,20 +55,22 @@ const ItemDetailContainer = () => {
       direction="column"
       justifyContent="center"
       alignItems="center"
-      style={{ minHeight: "100vh" }}
+      style={{
+        minHeight: "100vh",
+        background: "#F8F0E3", // Set your desired pastel color
+        padding: "20px", // Add some padding for better presentation
+      }}
       spacing={2}
     >
       <Grid item>
         <ProductCard
           id={productSelected.id}
-          category={productSelected.category}
           title={productSelected.title}
           description={productSelected.description}
           price={productSelected.price}
           img={productSelected.img}
           stock={productSelected.stock}
-          showAddToCartButton={true}
-          onAddToCartClick={() => onAdd(1)}
+          showAddToCartButton={false} // No mostrar los botones
         />
       </Grid>
       <Grid item>

@@ -42,12 +42,18 @@ const ItemListContainer = () => {
   return (
     <div
       className="loader-container"
-      style={{ textAlign: "center", paddingTop: "20px" }}
+      style={{
+        textAlign: "center",
+        paddingTop: "20px",
+        backgroundColor: "#F8F0E3", // Set your desired pastel color
+      }}
     >
       {loading ? (
         <BeatLoader color="#36D7B7" loading={loading} size={15} />
       ) : (
-        <ItemList filteredProducts={filteredProducts} />
+        <div style={{ padding: "20px" }}>
+          <ItemList filteredProducts={filteredProducts} />
+        </div>
       )}
     </div>
   );
