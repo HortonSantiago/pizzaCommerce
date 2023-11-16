@@ -15,11 +15,11 @@ const CartContextComponent = ({ children }) => {
             quantity: elemento.quantity + product.quantity,
           };
         }
-        return elemento; // Agrega esta línea para manejar el caso de map
+        return elemento;
       });
       setCart(newArray);
     } else {
-      setCart([...cart, product]); // Agrega el producto al carrito si no existe
+      setCart([...cart, product]);
     }
   };
 
@@ -29,16 +29,14 @@ const CartContextComponent = ({ children }) => {
   };
 
   const getQuantityById = (id) => {
-    let product = cart.find((elemeto) => elemeto.id === id);
-    return product?.quantity;
+    let product = cart.find((elemento) => elemento.id === id);
+    return product ? product.quantity : undefined;
   };
 
-  //limpia el carrito
   const clearCart = () => {
     setCart([]);
   };
 
-  // borra producto del carrito
   const deleteProductById = (id) => {
     console.log("el id es: ", id);
     let newArr = cart.filter((product) => product.id !== id);

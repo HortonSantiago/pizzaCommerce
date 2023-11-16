@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { products } from "../../productMock";
-import "./ItemList.css";
 import { BeatLoader } from "react-spinners";
 import ItemList from "./ItemList";
 import { useParams } from "react-router-dom";
+import { getDocs, collection, query, where } from "firebase/firestore";
+import { db } from "../../../firebase";
+import "./ItemList.css";
 
 const ItemListContainer = () => {
   const { categoryName } = useParams();
@@ -11,33 +12,54 @@ const ItemListContainer = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const getFilteredProducts = () => {
-      if (categoryName) {
-        return products.filter((product) => product.category === categoryName);
-      } else {
-        return products;
-      }
-    };
-
     const fetchData = async () => {
-      const delay = 4000;
-      const filtered = getFilteredProducts();
+      const delay = 1000;
 
-      if (filtered.length === 0) {
+      try {
+        // Obtener la colección de productos desde Firebase
+        const productsCollection = collection(db, "products");
+
+        // Filtrar productos por categoría
+        const filtered =
+          categoryName !== undefined
+            ? await getFilteredProducts(productsCollection, categoryName)
+            : await getAllProducts(productsCollection);
+
+        // Simular un retraso antes de actualizar el estado
         setLoading(true);
-
         await new Promise((resolve) => setTimeout(resolve, delay));
 
+        // Actualizar el estado con los productos filtrados
         setFilteredProducts(filtered);
         setLoading(false);
-      } else {
+      } catch (error) {
+        console.error("Error fetching data:", error);
         setLoading(false);
-        setFilteredProducts(filtered);
       }
     };
 
     fetchData();
   }, [categoryName]);
+
+  const getAllProducts = async (collectionRef) => {
+    const snapshot = await getDocs(collectionRef);
+    return snapshot.docs.map((product) => ({
+      id: product.id,
+      ...product.data(),
+    }));
+  };
+
+  const getFilteredProducts = async (collectionRef, category) => {
+    const filteredCollection = query(
+      collectionRef,
+      where("category", "==", category)
+    );
+    const snapshot = await getDocs(filteredCollection);
+    return snapshot.docs.map((product) => ({
+      id: product.id,
+      ...product.data(),
+    }));
+  };
 
   return (
     <div

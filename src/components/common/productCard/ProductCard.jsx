@@ -14,8 +14,19 @@ export default function ProductCard({
   img,
   category,
   showAddToCartButton = true,
-  sx = {}, // Agregamos una prop opcional para estilos personalizados
+  sx = {},
 }) {
+  console.log("ProductCard Props:", {
+    id,
+    title,
+    description,
+    price,
+    img,
+    category,
+    showAddToCartButton,
+    sx,
+  });
+
   return (
     <Card sx={{ maxWidth: 345, backgroundColor: "black", ...sx }}>
       <CardMedia component="img" alt={title} height="140" image={img} />

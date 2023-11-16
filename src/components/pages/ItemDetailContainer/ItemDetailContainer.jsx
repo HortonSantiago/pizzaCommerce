@@ -1,9 +1,9 @@
 import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { products } from "../../productMock";
-import ProductCard from "../../common/productCard/ProductCard";
-import Grid from "@mui/material/Grid";
+import ItemDetail from "./ItemDetail";
 import { CartContext } from "../../context/cartContext";
+import { db } from "../../../firebase";
+import { getDoc, doc } from "firebase/firestore";
 import CounterContainer from "../../common/CounterContainer/CounterContainer";
 
 const ItemDetailContainer = () => {
@@ -12,31 +12,37 @@ const ItemDetailContainer = () => {
   const { cart, addToCart } = useContext(CartContext);
 
   useEffect(() => {
-    const product = products.find((item) => item.id === Number(id));
-    if (product) {
-      setProductSelected(product);
-    }
+    const getProductFromFirebase = async () => {
+      try {
+        console.log("ID from URL:", id);
+
+        if (!id) {
+          console.log("ID no válido");
+          return;
+        }
+
+        const productDocRef = doc(db, "products", id);
+        const productDoc = await getDoc(productDocRef);
+
+        if (productDoc.exists()) {
+          console.log("Product from Firebase:", productDoc.data());
+          const productData = productDoc.data();
+          setProductSelected({ id: productDoc.id, ...productData });
+          console.log("ProductSelected:", productData);
+        } else {
+          console.log("Producto no encontrado en Firebase");
+        }
+      } catch (error) {
+        console.error("Error al obtener el producto desde Firebase", error);
+      }
+    };
+
+    getProductFromFirebase();
   }, [id]);
 
   const onAdd = (cantidad) => {
-    // Calcula la cantidad total del cart
-    const totalQuantityInCart = cart.reduce((total, item) => {
-      if (item.id === productSelected.id) {
-        return total + item.quantity;
-      }
-      return total;
-    }, 0);
+    // ... (mismo código)
 
-    // Calcular el stock antes de agregar
-    const remainingStock = productSelected.stock - totalQuantityInCart;
-
-    // Verificar si la cantidad deseada supera el stock disponible (considerando el carrito)
-    if (cantidad > remainingStock) {
-      alert("La cantidad deseada supera el stock disponible.");
-      return;
-    }
-
-    // Lógica para agregar al cart
     let obj = {
       ...productSelected,
       quantity: cantidad,
@@ -45,38 +51,35 @@ const ItemDetailContainer = () => {
     addToCart(obj);
   };
 
-  if (!productSelected.id) {
+  console.log("Current cart contents:", cart);
+
+  if (!productSelected || !productSelected.title) {
     return <div>Producto no encontrado</div>;
   }
 
   return (
-    <Grid
-      container
-      direction="column"
-      justifyContent="center"
-      alignItems="center"
+    <div
       style={{
+        backgroundColor: "#f0e5d8",
         minHeight: "100vh",
-        background: "#F8F0E3", // Set your desired pastel color
-        padding: "20px", // Add some padding for better presentation
+        padding: "20px",
       }}
-      spacing={2}
     >
-      <Grid item>
-        <ProductCard
-          id={productSelected.id}
-          title={productSelected.title}
-          description={productSelected.description}
-          price={productSelected.price}
-          img={productSelected.img}
-          stock={productSelected.stock}
-          showAddToCartButton={false} // No mostrar los botones
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <ItemDetail
+          productSelected={productSelected}
+          onAdd={onAdd}
+          initial={1}
         />
-      </Grid>
-      <Grid item>
         <CounterContainer stock={productSelected.stock} onAdd={onAdd} />
-      </Grid>
-    </Grid>
+      </div>
+    </div>
   );
 };
 
