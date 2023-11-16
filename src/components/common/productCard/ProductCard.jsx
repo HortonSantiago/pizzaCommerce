@@ -8,75 +8,72 @@ import { Link } from "react-router-dom";
 
 export default function ProductCard({
   id,
-  category,
   title,
   description,
   price,
   img,
+  category,
+  showAddToCartButton = true,
+  sx = {}, // Agregamos una prop opcional para estilos personalizados
 }) {
   return (
-    <Card sx={{ maxWidth: 345, backgroundColor: "lightgray" }}>
-      <CardMedia
-        component="img"
-        alt={title}
-        height="140"
-        image={img} // Usamos la imagen pasada como prop
-      />
-      <CardContent>
+    <Card sx={{ maxWidth: 345, backgroundColor: "black", ...sx }}>
+      <CardMedia component="img" alt={title} height="140" image={img} />
+      <CardContent sx={{ textAlign: "center" }}>
         <Typography
           gutterBottom
           variant="h5"
           component="div"
           sx={{
-            backgroundColor: "darkgray",
-            display: "flex",
-            justifyContent: "center",
-            color: "black",
+            color: "white",
             padding: "8px",
           }}
         >
           {title}
         </Typography>
+        {category && (
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            sx={{ color: "darkgray" }}
+          >
+            {category}
+          </Typography>
+        )}
         <Typography
           variant="body2"
           color="text.secondary"
-          sx={{ color: "darkgray" }}
-        >
-          ID: {id}
-        </Typography>
-        <Typography
-          variant="body2"
-          color="text.secondary"
-          sx={{ color: "darkgray" }}
-        >
-          Category: {category}
-        </Typography>
-        <Typography
-          variant="body2"
-          color="text.secondary"
-          sx={{ color: "darkgray" }}
+          sx={{ color: "white" }}
         >
           {description}
         </Typography>
         <Typography
           variant="body2"
           color="text.secondary"
-          sx={{ color: "darkgray" }}
+          sx={{ color: "white", fontWeight: "bold" }}
         >
-          Price: {price} USD
+          {price} USD
         </Typography>
       </CardContent>
-      <CardActions sx={{ justifyContent: "space-between" }}>
-        <Button
-          size="small"
-          sx={{
-            backgroundColor: "brown",
-            color: "beige",
-            "&:hover": { backgroundColor: "black" },
-          }}
-        >
-          Añadir al carrito
-        </Button>
+      <CardActions
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        {showAddToCartButton && (
+          <Button
+            size="small"
+            sx={{
+              backgroundColor: "brown",
+              color: "beige",
+              "&:hover": { backgroundColor: "black" },
+            }}
+          >
+            Añadir al carrito
+          </Button>
+        )}
         <Link to={`/itemDetail/${id}`}>
           <Button
             size="small"
@@ -84,6 +81,7 @@ export default function ProductCard({
               backgroundColor: "beige",
               color: "brown",
               "&:hover": { backgroundColor: "black" },
+              marginTop: "10px",
             }}
           >
             Detalle

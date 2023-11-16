@@ -15,7 +15,7 @@ import CartWidget from "../../common/cartWidget/CartWidget";
 import { Link } from "react-router-dom";
 
 const pages = ["pizzas", "panes"];
-const settings = ["Cuenta", "Historial de compras", "Sobre nosotros"];
+const settings = [];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -40,7 +40,7 @@ function ResponsiveAppBar() {
     <AppBar position="fixed" elevation="24" sx={{ bgcolor: "grey" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Link to="/cart">
+          <Link to="/cart" style={{ textDecoration: "none", color: "black" }}>
             <CartWidget sx={{ display: { xs: "none", md: "flex" }, mr: 2 }} />
           </Link>
           <Box
@@ -84,14 +84,16 @@ function ResponsiveAppBar() {
                   style={{ textDecoration: "none" }}
                 >
                   <MenuItem onClick={handleCloseNavMenu}>
-                    <Typography textAlign="end">{page}</Typography>
+                    <Typography textAlign="end" color="black">
+                      {page}
+                    </Typography>
                   </MenuItem>
                 </Link>
               ))}
             </Menu>
           </Box>
 
-          <Link to="/">
+          <Link to="/" style={{ textDecoration: "none" }}>
             <Typography
               variant="h2"
               noWrap
@@ -103,9 +105,9 @@ function ResponsiveAppBar() {
                 ml: { xs: 2, md: 20 },
                 fontFamily: "Roboto",
                 fontWeight: 400,
-                fontSize: 20,
+                fontSize: 28,
                 letterSpacing: ".3rem",
-                color: "inherit",
+                color: "black",
                 textDecoration: "none",
                 textAlign: "center",
               }}
@@ -113,7 +115,14 @@ function ResponsiveAppBar() {
               Pizza string
             </Typography>
           </Link>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: "flex",
+              justifyContent: "flex-end", // Alineación a la derecha
+              marginRight: "20px", // Ajuste del margen derecho
+            }}
+          >
             {pages.map((page) => (
               <Link
                 key={page}
@@ -123,7 +132,12 @@ function ResponsiveAppBar() {
                 <Button
                   key={page}
                   onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "white", display: "block" }}
+                  sx={{
+                    my: 2,
+                    color: "orange",
+                    display: "block",
+                    marginLeft: "20px", // Ajuste del margen izquierdo entre las categorías
+                  }}
                 >
                   {page}
                 </Button>
@@ -158,7 +172,9 @@ function ResponsiveAppBar() {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                  <Typography textAlign="center" color="black">
+                    {setting}
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -168,4 +184,5 @@ function ResponsiveAppBar() {
     </AppBar>
   );
 }
+
 export default ResponsiveAppBar;
