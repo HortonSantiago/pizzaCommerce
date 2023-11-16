@@ -1,6 +1,5 @@
-import { Button, TextField, Typography } from "@mui/material";
+import { Button, TextField, Typography, Link } from "@mui/material";
 import { useFormik } from "formik";
-import Link from "@mui/material";
 import * as Yup from "yup";
 import Swal from "sweetalert2";
 
@@ -83,14 +82,14 @@ export const CheckOutFormik = () => {
       text: "Tu pedido no será procesado.",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "#FF4500", // Cambiado a color naranja
+      cancelButtonColor: "#A9A9A9", // Cambiado a color gris
       confirmButtonText: "Sí, cancelar",
       cancelButtonText: "No, seguir",
     }).then((result) => {
       if (result.isConfirmed) {
         // Si el usuario confirma, redirige a la página del carrito
-        console.log("Operación cancelada");
+        window.location.href = "/cart";
       }
     });
   };
@@ -132,11 +131,13 @@ export const CheckOutFormik = () => {
           variant="contained"
           type="submit"
           disabled={!isValid || isSubmitting}
+          style={{
+            backgroundColor: "#FF4500", // Cambiado a color naranja
+            color: "white",
+            marginTop: "10px", // Ajustado el margen superior
+          }}
         >
           Realizar Compra
-        </Button>
-        <Button variant="contained" type="button">
-          Cancelar
         </Button>
         <Link to="/cart">
           <Button

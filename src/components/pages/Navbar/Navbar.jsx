@@ -24,6 +24,7 @@ function ResponsiveAppBar() {
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
+
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -37,15 +38,17 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar position="fixed" elevation="24" sx={{ bgcolor: "grey" }}>
+    <AppBar position="fixed" elevation={24} sx={{ bgcolor: "grey" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Link to="/cart" style={{ textDecoration: "none", color: "black" }}>
             <CartWidget sx={{ display: { xs: "none", md: "flex" }, mr: 2 }} />
           </Link>
+
+          {/* Mostrar menú hamburguesa solo en pantallas pequeñas */}
           <Box
             sx={{
-              flexGrow: { xs: 10, md: 1 },
+              flexGrow: 1,
               display: { xs: "flex", md: "none" },
             }}
           >
@@ -74,7 +77,7 @@ function ResponsiveAppBar() {
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: "block", md: "block" },
+                display: { xs: "block", md: "none" },
               }}
             >
               {pages.map((page) => (
@@ -101,7 +104,7 @@ function ResponsiveAppBar() {
               href="#app-bar-with-responsive-menu"
               sx={{
                 display: { xs: "flex", md: "block" },
-                flexGrow: { xs: 10, md: 50 },
+                flexGrow: 0, // Cambié flexGrow a 0 para evitar que se expanda en pantallas grandes
                 ml: { xs: 2, md: 20 },
                 fontFamily: "Roboto",
                 fontWeight: 400,
@@ -115,12 +118,13 @@ function ResponsiveAppBar() {
               Pizza string
             </Typography>
           </Link>
+
           <Box
             sx={{
               flexGrow: 1,
               display: "flex",
-              justifyContent: "flex-end", // Alineación a la derecha
-              marginRight: "20px", // Ajuste del margen derecho
+              justifyContent: "flex-end",
+              marginRight: "20px",
             }}
           >
             {pages.map((page) => (
@@ -135,8 +139,8 @@ function ResponsiveAppBar() {
                   sx={{
                     my: 2,
                     color: "orange",
-                    display: "block",
-                    marginLeft: "20px", // Ajuste del margen izquierdo entre las categorías
+                    display: { xs: "none", md: "block" },
+                    marginLeft: "20px",
                   }}
                 >
                   {page}
