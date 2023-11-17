@@ -12,7 +12,7 @@ const CartContextComponent = ({ children }) => {
         if (elemento.id === product.id) {
           return {
             ...elemento,
-            quantity: elemento.quantity + product.quantity,
+            quantity: product.quantity,
           };
         }
         return elemento;
@@ -38,7 +38,6 @@ const CartContextComponent = ({ children }) => {
   };
 
   const deleteProductById = (id) => {
-    console.log("el id es: ", id);
     let newArr = cart.filter((product) => product.id !== id);
     setCart(newArr);
   };

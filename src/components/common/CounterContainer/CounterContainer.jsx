@@ -1,12 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CounterPresentacional from "./CounterPresentacional";
 
-const CounterContainer = ({ stock, onAdd, initial = 1 }) => {
-  const [contador, setContador] = useState(initial);
+const CounterContainer = ({ stock, onAdd, initialQuantity }) => {
+  const [contador, setContador] = useState(initialQuantity);
+
+  useEffect(() => {
+    setContador(initialQuantity);
+  }, [initialQuantity]);
 
   const sumar = () => {
     if (contador < stock) {
-      setContador(contador + 1);
+      setContador((prevContador) => prevContador + 1);
     } else {
       alert("Cantidad máxima alcanzada");
     }
@@ -14,7 +18,16 @@ const CounterContainer = ({ stock, onAdd, initial = 1 }) => {
 
   const restar = () => {
     if (contador > 1) {
-      setContador(contador - 1);
+      setContador((prevContador) => prevContador - 1);
+    }
+  };
+
+  const handleAddToCart = () => {
+    if (contador > stock) {
+      alert("Llegaste al máximo de unidades de este producto");
+    } else {
+      // SE PASA VALOR del contador, no del estado
+      onAdd(contador);
     }
   };
 
@@ -23,7 +36,7 @@ const CounterContainer = ({ stock, onAdd, initial = 1 }) => {
       sumar={sumar}
       restar={restar}
       contador={contador}
-      onAdd={onAdd}
+      onAdd={handleAddToCart}
     />
   );
 };

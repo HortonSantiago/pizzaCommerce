@@ -9,7 +9,7 @@ import CounterContainer from "../../common/CounterContainer/CounterContainer";
 const ItemDetailContainer = () => {
   const [productSelected, setProductSelected] = useState({});
   const { id } = useParams();
-  const { cart, addToCart } = useContext(CartContext);
+  const { cart, addToCart, getQuantityById } = useContext(CartContext);
 
   useEffect(() => {
     const getProductFromFirebase = async () => {
@@ -41,15 +41,23 @@ const ItemDetailContainer = () => {
   }, [id]);
 
   const onAdd = (cantidad) => {
-    // ... (mismo código)
+    const quantityInCart = getQuantityById(productSelected.id) || 0;
+    const totalQuantity = cantidad + quantityInCart;
 
-    let obj = {
-      ...productSelected,
-      quantity: cantidad,
-    };
+    // Valida si la cantidad total excede el stock disponible
+    if (totalQuantity > productSelected.stock) {
+      alert("Llegaste al máximo de unidades de este producto");
+    } else {
+      let obj = {
+        ...productSelected,
+        quantity: totalQuantity,
+      };
 
-    addToCart(obj);
+      addToCart(obj);
+    }
   };
+
+  const quantityInCart = getQuantityById(productSelected.id) || 0;
 
   console.log("Current cart contents:", cart);
 
@@ -76,8 +84,13 @@ const ItemDetailContainer = () => {
           productSelected={productSelected}
           onAdd={onAdd}
           initial={1}
+          cartQuantity={quantityInCart}
         />
-        <CounterContainer stock={productSelected.stock} onAdd={onAdd} />
+        <CounterContainer
+          stock={productSelected.stock}
+          onAdd={onAdd}
+          initialQuantity={quantityInCart}
+        />
       </div>
     </div>
   );

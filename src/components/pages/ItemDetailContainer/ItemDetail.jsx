@@ -2,34 +2,46 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
+import { Link } from "react-router-dom";
 
 const ItemDetail = ({ productSelected, cartQuantity }) => {
-  // Estilos en línea
   const cardStyle = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     maxWidth: "400px",
     margin: "auto",
-    marginBottom: "20px", // Ajusta el margen inferior según tus necesidades
+    marginBottom: "20px",
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-    backgroundColor: "#000", // Color de fondo negro
-    borderRadius: "8px", // Bordes redondeados
-    padding: "16px", // Espaciado interno
+    backgroundColor: "#000",
+    borderRadius: "8px",
+    padding: "16px",
   };
 
   const cardMediaStyle = {
-    width: "100%", // Imágenes ocupan todo el ancho
+    width: "100%",
     height: "200px",
     objectFit: "cover",
-    borderRadius: "8px", // Bordes redondeados
+    borderRadius: "8px",
+  };
+
+  const selectedProductTextStyle = {
+    textAlign: "center",
+    color: "#000",
+    fontWeight: "bold",
+    marginBottom: "10px",
+  };
+
+  const cartMessageStyle = {
+    width: "100%",
+    textAlign: "center",
+    color: "red",
+    fontWeight: "bold",
   };
 
   return (
     <div className="item-detail-container">
-      <h1 style={{ textAlign: "center", color: "#fff" }}>
-        Producto Seleccionado
-      </h1>
+      <h1 style={selectedProductTextStyle}>Producto Seleccionado</h1>
       {productSelected ? (
         <Card style={cardStyle}>
           <CardMedia
@@ -59,9 +71,12 @@ const ItemDetail = ({ productSelected, cartQuantity }) => {
             <Typography
               variant="body2"
               color="text.secondary"
-              style={{ color: "#fff" }}
+              style={cartMessageStyle}
             >
-              Ya tienes {cartQuantity} en el carrito
+              {cartQuantity > 0
+                ? `Tienes ${cartQuantity} unidades en el carrito`
+                : "No tienes nada en el carrito, por el momento!"}
+              <Link to="/cart">Finalizar compra</Link>
             </Typography>
           </CardContent>
         </Card>
