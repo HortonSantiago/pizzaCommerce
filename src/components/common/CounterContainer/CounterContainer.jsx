@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import CounterPresentacional from "./CounterPresentacional";
+import Swal from "sweetalert2";
 
 const CounterContainer = ({ stock, onAdd, initialQuantity }) => {
   const [contador, setContador] = useState(initialQuantity);
@@ -12,7 +13,12 @@ const CounterContainer = ({ stock, onAdd, initialQuantity }) => {
     if (contador < stock) {
       setContador((prevContador) => prevContador + 1);
     } else {
-      alert("Cantidad máxima alcanzada");
+      // Replace the default alert with SweetAlert
+      Swal.fire({
+        icon: "error",
+        title: "Cantidad máxima alcanzada",
+        text: "Llegaste al máximo de unidades disponibles de este producto",
+      });
     }
   };
 
@@ -24,9 +30,14 @@ const CounterContainer = ({ stock, onAdd, initialQuantity }) => {
 
   const handleAddToCart = () => {
     if (contador > stock) {
-      alert("Llegaste al máximo de unidades de este producto");
+      // Replace the default alert with SweetAlert
+      Swal.fire({
+        icon: "error",
+        title: "Cantidad máxima alcanzada",
+        text: "Llegaste al máximo de unidades de este producto",
+      });
     } else {
-      // SE PASA VALOR del contador, no del estado
+      // Pass the value of the contador, not the state
       onAdd(contador);
     }
   };

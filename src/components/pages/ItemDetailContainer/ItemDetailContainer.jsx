@@ -5,6 +5,7 @@ import { CartContext } from "../../context/cartContext";
 import { db } from "../../../firebase";
 import { getDoc, doc } from "firebase/firestore";
 import CounterContainer from "../../common/CounterContainer/CounterContainer";
+import Swal from "sweetalert2";
 
 const ItemDetailContainer = () => {
   const [productSelected, setProductSelected] = useState({});
@@ -44,9 +45,14 @@ const ItemDetailContainer = () => {
     const quantityInCart = getQuantityById(productSelected.id) || 0;
     const totalQuantity = cantidad + quantityInCart;
 
-    // Valida si la cantidad total excede el stock disponible
+    // valida si el total excede la cantidad disponible de stock
     if (totalQuantity > productSelected.stock) {
-      alert("Llegaste al máximo de unidades de este producto");
+      // sweet alert
+      Swal.fire({
+        icon: "error",
+        title: "Cantidad máxima alcanzada",
+        text: "Llegaste al máximo de unidades de este producto",
+      });
     } else {
       let obj = {
         ...productSelected,
