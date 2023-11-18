@@ -1,8 +1,11 @@
-# React + Vite
+# Pizzacommerce
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Tecnologías Utilizadas
 
-Currently, two official plugins are available:
+- **React**: Biblioteca de JavaScript para construir interfaces de usuario interactivas.
+- **Vite**: Herramienta de desarrollo web rápida que utiliza ESM para un desarrollo más eficiente.
+- **Formik**: Biblioteca para gestionar formularios en React de manera sencilla y eficaz.
+- **Yup**: Biblioteca de validación de esquemas para validar los datos del formulario.
+- **Material-UI (MUI)**: Biblioteca de componentes de React que implementa el diseño de Material Design.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+\*\*\*Lo que aparece en itemListContainer esta disponible en stock, este se actualiza desde firebase.

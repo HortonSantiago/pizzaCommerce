@@ -25,12 +25,17 @@ const ItemListContainer = () => {
             ? await getFilteredProducts(productsCollection, categoryName)
             : await getAllProducts(productsCollection);
 
+        // Filtrar productos que tienen stock mayor que 0
+        const filteredWithStock = filtered.filter(
+          (product) => product.stock > 0
+        );
+
         // Simular un retraso antes de actualizar el estado
         setLoading(true);
         await new Promise((resolve) => setTimeout(resolve, delay));
 
-        // Actualizar el estado con los productos filtrados
-        setFilteredProducts(filtered);
+        // Actualizar el estado con los productos filtrados con stock
+        setFilteredProducts(filteredWithStock);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -67,7 +72,7 @@ const ItemListContainer = () => {
       style={{
         textAlign: "center",
         paddingTop: "20px",
-        backgroundColor: "#F8F0E3", // Set your desired pastel color
+        backgroundColor: "#F8F0E3", // pastel
         padding: "20px",
         display: "flex",
         justifyContent: "center",
@@ -83,7 +88,7 @@ const ItemListContainer = () => {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            marginLeft: "50px", // Agregamos la unidad de medida "px"
+            marginLeft: "50px",
             justifyContent: "center",
           }}
         >

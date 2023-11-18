@@ -1,10 +1,16 @@
+import { useContext } from "react";
+import { CartContext } from "../../context/cartContext";
 import { Button, TextField, Typography, Link } from "@mui/material";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Swal from "sweetalert2";
+import { db } from "../../../firebase";
+import { collection, addDoc, updateDoc, doc } from "firebase/firestore";
 
 export const CheckOutFormik = () => {
-  const { handleChange, handleSubmit, errors, touched, isValid, isSubmitting } =
+  const cartContext = useContext(CartContext);
+
+  const { handleChange, handleSubmit, errors, touched, isSubmitting } =
     useFormik({
       initialValues: {
         primerNombre: "",
@@ -14,11 +20,14 @@ export const CheckOutFormik = () => {
         password: "",
         repeatPassword: "",
       },
-      onSubmit: async () => {
+      onSubmit: async (values) => {
         try {
-          const orderId = await saveOrderToDatabase();
+          const orderId = await saveOrderToDatabase(values, cartContext.cart);
 
-          // Show SweetAlert success
+          //limpiamos cart despues de la compra
+          cartContext.clearCart();
+
+          //
           Swal.fire({
             icon: "success",
             title: "Compra realizada con éxito",
@@ -82,8 +91,8 @@ export const CheckOutFormik = () => {
       text: "Tu pedido no será procesado.",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#FF4500", // Cambiado a color naranja
-      cancelButtonColor: "#A9A9A9", // Cambiado a color gris
+      confirmButtonColor: "#FF4500",
+      cancelButtonColor: "#A9A9A9",
       confirmButtonText: "Sí, cancelar",
       cancelButtonText: "No, seguir",
     }).then((result) => {
@@ -126,19 +135,19 @@ export const CheckOutFormik = () => {
           type="password"
         />
 
-        {/* 'Realizar Compra' button is disabled only during form submission */}
         <Button
           variant="contained"
           type="submit"
-          disabled={!isValid || isSubmitting}
+          disabled={isSubmitting}
           style={{
-            backgroundColor: "#FF4500", // Cambiado a color naranja
+            backgroundColor: "#FF4500",
             color: "white",
-            marginTop: "10px", // Ajustado el margen superior
+            marginTop: "10px",
           }}
         >
           Realizar Compra
         </Button>
+
         <Link to="/cart">
           <Button
             variant="contained"
@@ -158,10 +167,35 @@ export const CheckOutFormik = () => {
   );
 };
 
-async function saveOrderToDatabase() {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve("12345");
-    }, 1000);
+async function saveOrderToDatabase(values, cart) {
+  const total = cart.reduce((acc, product) => acc + product.price, 0);
+
+  const orderData = {
+    buyer: {
+      primerNombre: values.primerNombre,
+      segundoNombre: values.segundoNombre,
+      email: values.email,
+      telefono: values.telefono,
+    },
+    items: cart,
+    total: total.toString(),
+    date: new Date(),
+  };
+
+  //
+  const docRef = await addDoc(collection(db, "orders"), orderData);
+
+  // Actualizar el stock de los productos en la base de datos
+  cart.forEach(async (elemento) => {
+    try {
+      const productRef = doc(db, "products", elemento.id);
+      await updateDoc(productRef, {
+        stock: elemento.stock - elemento.quantity,
+      });
+    } catch (error) {
+      console.error("Error al actualizar el stock del producto:", error);
+    }
   });
+
+  return docRef.id;
 }

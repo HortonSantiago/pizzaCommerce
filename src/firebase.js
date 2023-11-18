@@ -4,12 +4,13 @@ import { getFirestore } from "firebase/firestore";
 
 // Configuración de Firebase
 const firebaseConfig = {
-  apiKey: "AIzaSyCkEH5o2zg8i1oL-pULb6-yWgJA47_pLx8",
-  authDomain: "pizzacommerce.firebaseapp.com",
-  projectId: "pizzacommerce",
-  storageBucket: "pizzacommerce.appspot.com",
-  messagingSenderId: "935079041298",
-  appId: "1:935079041298:web:104bbd165b03c9692bfbcb",
+  apiKey: import.meta.env.VITE_REACT_APP_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env
+    .VITE_REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_REACT_APP_FIREBASE_APP_ID,
 };
 
 // Inicializa Firebase y obtén la referencia de Firestore
