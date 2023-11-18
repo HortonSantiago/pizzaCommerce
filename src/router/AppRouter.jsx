@@ -12,7 +12,7 @@ const AppRouter = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           {routes.map(({ id, path, Element }) => (
-            <Route key={id} path={path} element={<Element />} />
+            <Route key={id} index path={path} element={<Element />} />
           ))}
         </Route>
         <Route path="*" element={<h1>NOT FOUND</h1>} />
