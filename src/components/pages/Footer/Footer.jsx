@@ -50,7 +50,7 @@ const Footer = () => {
             <IconButton
               color="inherit"
               aria-label="Instagram"
-              href="https://www.instagram.com/tupizzeria"
+              href="https://www.instagram.com/pizzacommerce"
               target="_blank"
             >
               <InstagramIcon />
@@ -58,7 +58,7 @@ const Footer = () => {
             <IconButton
               color="inherit"
               aria-label="YouTube"
-              href="https://www.youtube.com/c/tupizzeria"
+              href="https://www.youtube.com/c/pizzacommerce"
               target="_blank"
             >
               <YouTubeIcon />

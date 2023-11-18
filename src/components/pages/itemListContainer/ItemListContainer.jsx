@@ -16,7 +16,6 @@ const ItemListContainer = () => {
       const delay = 1000;
 
       try {
-        // Obtener la colección de productos desde Firebase
         const productsCollection = collection(db, "products");
 
         // Filtrar productos por categoría
@@ -30,11 +29,10 @@ const ItemListContainer = () => {
           (product) => product.stock > 0
         );
 
-        // Simular un retraso antes de actualizar el estado
+        // simulo retraso antes de actualizar el estado
         setLoading(true);
         await new Promise((resolve) => setTimeout(resolve, delay));
 
-        // Actualizar el estado con los productos filtrados con stock
         setFilteredProducts(filteredWithStock);
         setLoading(false);
       } catch (error) {
