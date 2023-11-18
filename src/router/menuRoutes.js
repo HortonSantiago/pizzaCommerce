@@ -1,6 +1,7 @@
 import Cart from "../components/pages/Cart/Cart";
 import ItemDetailContainer from "../components/pages/ItemDetailContainer/ItemDetailContainer.jsx";
-import ItemListContainer from "../components/pages/ItemListContainer/ItemListContainer.jsx";
+
+import ItemListContainer from "../components/pages/ItemListContainer/ItemListContainer";
 
 import { CheckOutFormik } from "../components/pages/checkOutFormik/CheckOutFormik.jsx";
 
