@@ -27,3 +27,6 @@ dist-ssr
 .env
 
 .et --hard 95a3f66
+
+
+.checkOut
