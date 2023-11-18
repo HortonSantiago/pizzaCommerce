@@ -1,5 +1,5 @@
 import { BrowserRouter } from "react-router-dom";
-import AppRouter from "./components/pages/Route/AppRouter";
+import AppRouter from "./components/router/AppRouter.jsx";
 import CartContextComponent from "./components/context/cartContext.jsx";
 
 function App() {
