@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { CartContext } from "../../context/cartContext";
+import { CartContext } from "../../../context/CartContext";
 import { Button, TextField, Typography, Link } from "@mui/material";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -24,10 +24,8 @@ export const CheckOutFormik = () => {
         try {
           const orderId = await saveOrderToDatabase(values, cartContext.cart);
 
-          //limpiamos cart despues de la compra
           cartContext.clearCart();
 
-          //
           Swal.fire({
             icon: "success",
             title: "Compra realizada con éxito",
@@ -85,7 +83,6 @@ export const CheckOutFormik = () => {
   });
 
   const handleCancelClick = () => {
-    // Muestra Sweet Alert para confirmar la cancelación
     Swal.fire({
       title: "¿Estás seguro de cancelar?",
       text: "Tu pedido no será procesado.",
@@ -97,7 +94,6 @@ export const CheckOutFormik = () => {
       cancelButtonText: "No, seguir",
     }).then((result) => {
       if (result.isConfirmed) {
-        // Si el usuario confirma, redirige a la página del carrito
         window.location.href = "/cart";
       }
     });
@@ -134,19 +130,20 @@ export const CheckOutFormik = () => {
           {...getInputProps("repeatPassword", "Repetir Contraseña")}
           type="password"
         />
-
-        <Button
-          variant="contained"
-          type="submit"
-          disabled={isSubmitting}
-          style={{
-            backgroundColor: "#FF4500",
-            color: "white",
-            marginTop: "10px",
-          }}
-        >
-          Realizar Compra
-        </Button>
+        <Link to="/">
+          <Button
+            variant="contained"
+            type="submit"
+            disabled={isSubmitting}
+            style={{
+              backgroundColor: "#FF4500",
+              color: "white",
+              marginTop: "10px",
+            }}
+          >
+            Realizar Compra
+          </Button>
+        </Link>
 
         <Link to="/cart">
           <Button
@@ -182,10 +179,8 @@ async function saveOrderToDatabase(values, cart) {
     date: new Date(),
   };
 
-  //
   const docRef = await addDoc(collection(db, "orders"), orderData);
 
-  // Actualizar el stock de los productos en la base de datos
   cart.forEach(async (elemento) => {
     try {
       const productRef = doc(db, "products", elemento.id);
