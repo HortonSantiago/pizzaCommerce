@@ -1,18 +1,19 @@
 import Cart from "../components/pages/Cart/Cart.jsx";
+
+import ItemListContainer from "../components/pages/ItemListContainer/ItemListContainer.jsx";
 import ItemDetailContainer from "../components/pages/ItemDetailContainer/ItemDetailContainer.jsx";
-import CustomItemListContainer from "../components/pages/ItemListContainer/ItemListContainer.jsx";
 import { CheckOutFormik } from "../components/pages/checkOutFormik/CheckoutFormik.jsx";
 
 export const routes = [
   {
     id: "home",
     path: "/",
-    Element: CustomItemListContainer,
+    Element: ItemListContainer,
   },
   {
     id: "category",
     path: "/category/:categoryName",
-    Element: CustomItemListContainer,
+    Element: ItemListContainer,
   },
   {
     id: "cart",

@@ -6,7 +6,7 @@ import { getDocs, collection, query, where } from "firebase/firestore";
 import { db } from "../../../firebase";
 import "./ItemList.css";
 
-const CustomItemListContainer = () => {
+const ItemListContainer = () => {
   const { categoryName } = useParams();
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -97,4 +97,4 @@ const CustomItemListContainer = () => {
   );
 };
 
-export default CustomItemListContainer;
+export default ItemListContainer;
