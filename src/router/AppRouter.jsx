@@ -1,9 +1,7 @@
 import { ThemeProvider } from "@emotion/react";
 import { Route, Routes } from "react-router-dom";
-
 import Layout from "../components/layout/footer/Layout";
 import { CustomTheme } from "../components/themeConfig";
-
 import { routes } from "./menuRoutes";
 
 const AppRouter = () => {
