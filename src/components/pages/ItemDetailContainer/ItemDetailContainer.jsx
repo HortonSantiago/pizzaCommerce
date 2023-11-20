@@ -5,12 +5,12 @@ import { db } from "../../../firebase";
 import { getDoc, doc } from "firebase/firestore";
 import CounterContainer from "../../common/CounterContainer/CounterContainer";
 import Swal from "sweetalert2";
-import CartContextComponent from "../../../context/CartContext";
+import { CartContext } from "../../../context/CartContext";
 
 const ItemDetailContainer = () => {
   const [productSelected, setProductSelected] = useState({});
   const { id } = useParams();
-  const { cart, addToCart, getQuantityById } = useContext(CartContextComponent);
+  const { cart, addToCart, getQuantityById } = useContext(CartContext);
 
   useEffect(() => {
     const getProductFromFirebase = async () => {
