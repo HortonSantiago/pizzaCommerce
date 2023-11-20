@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 
 import Swal from "sweetalert2";
-import CartContextComponent from "../../../context/CartContext";
+import { CartContext } from "../../../context/CartContext";
 
 const Cart = () => {
   const { cart, clearCart, deleteProductById, getTotalPrice } =
-    useContext(CartContextComponent);
+    useContext(CartContext);
 
   const handleDeleteClick = (productId, productName) => {
     Swal.fire({
