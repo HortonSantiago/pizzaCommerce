@@ -1,12 +1,13 @@
 import { Button, Typography, Grid, Paper } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-import { CartContext } from "../../../context/CartContext";
+
 import Swal from "sweetalert2";
+import CartContextComponent from "../../../context/CartContext";
 
 const Cart = () => {
   const { cart, clearCart, deleteProductById, getTotalPrice } =
-    useContext(CartContext);
+    useContext(CartContextComponent);
 
   const handleDeleteClick = (productId, productName) => {
     Swal.fire({
