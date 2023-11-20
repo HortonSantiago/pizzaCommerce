@@ -1,13 +1,12 @@
-import Footer from "../../pages/Footer/Footer";
-import Navbar from "../../pages/Navbar/Navbar";
-
+import Footer from "./Footer/Footer";
 import { Outlet } from "react-router-dom";
+import ResponsiveAppBar from "./Navbar/Navbar";
 
 const Layout = () => {
   return (
     <div>
       <div style={{ height: "10vh" }}>
-        <Navbar />
+        <ResponsiveAppBar />
       </div>
       <div style={{ minHeight: "80vh" }}>
         <Outlet />

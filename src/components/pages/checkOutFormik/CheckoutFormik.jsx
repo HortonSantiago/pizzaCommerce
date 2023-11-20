@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 import { db } from "../../../firebase";
 import { collection, addDoc, updateDoc, doc } from "firebase/firestore";
 
-export const CheckOutFormik = () => {
+export const CheckoutFormik = () => {
   const cartContext = useContext(CartContext);
 
   const { handleChange, handleSubmit, errors, touched, isSubmitting } =

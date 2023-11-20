@@ -1,8 +1,8 @@
-import Cart from "../components/pages/Cart/Cart.jsx";
+import Cart from "../components/pages/cart/Cart.jsx";
 
-import ItemDetailContainer from "../components/pages/ItemDetailContainer/ItemDetailContainer.jsx";
-import ItemListContainer from "../components/pages/ItemListContainer/ItemListContainer.jsx";
-import { CheckOutFormik } from "../components/pages/checkOutFormik/CheckoutFormik.jsx";
+import ItemDetailContainer from "../components/pages/itemDetailContainer/ItemDetailContainer.jsx";
+import ItemListContainer from "../components/pages/itemListContainer/ItemListContainer.jsx";
+import { CheckoutFormik } from "../components/pages/checkOutFormik/CheckoutFormik.jsx";
 
 export const routes = [
   {
@@ -28,6 +28,6 @@ export const routes = [
   {
     id: "checkout",
     path: "/checkout",
-    Element: CheckOutFormik,
+    Element: CheckoutFormik,
   },
 ];
